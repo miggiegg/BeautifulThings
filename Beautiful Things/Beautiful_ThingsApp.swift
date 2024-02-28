@@ -9,13 +9,24 @@ import SwiftUI
 
 @main
 struct Beautiful_ThingsApp: App {
+    @State private var appModel = AppModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if appModel.showLaunchScreen {
+                LaunchView()
+                    .environment(appModel)
+                    .transition(.opacity)
+                    .windowGeometryPreferences(resizingRestrictions: .none)
+            } else {
+                MainView()
+                    .environment(appModel)
+                    .opacity(appModel.showLaunchScreen ? 0 : 1)
+                    .transition(.opacity)
+                    .windowGeometryPreferences(resizingRestrictions: .none)
+            }
         }
-
-        ImmersiveSpace(id: "ImmersiveSpace") {
-            ImmersiveView()
-        }.immersionStyle(selection: .constant(.progressive), in: .progressive)
+        .windowStyle(.plain)
+        .defaultSize(width: 600, height: 950)
     }
 }

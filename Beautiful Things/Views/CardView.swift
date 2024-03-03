@@ -7,8 +7,8 @@
 import SwiftUI
 import RealityKit
 struct ManipulationState {
-  var transform: AffineTransform3D = .identity
-  var active: Bool = false
+    var transform: AffineTransform3D = .identity
+    var active: Bool = false
 }
 
 struct CardView: View {
@@ -21,32 +21,32 @@ struct CardView: View {
     @State private var isQuickLookVisible = false
     @State private var selectedModelURL: URL? = nil
     @State private var isPreviewVisible = false
-
+    
     var body: some View {
-           ZStack {
-               VStack {
-                   if localFileURL != nil {
-                       AsyncImage(url: URL(string: beautifulThing.imageURL)) { image in
-                           image
-                               .resizable()
-                               .scaledToFit()
-                               .frame(width: 400, height: 400)
-                               .onDrag {
-                                   let itemProvider = NSItemProvider(contentsOf: self.localFileURL) ?? NSItemProvider()
-                                   let userActivity = NSUserActivity(activityType: "com.apple.cocoa.touch.3dmodel")
-                                   userActivity.isEligibleForHandoff = true
-                                   userActivity.isEligibleForSearch = true
-                                   userActivity.isEligibleForPublicIndexing = true
-                                   userActivity.title = beautifulThing.title
-                                   itemProvider.registerObject(userActivity, visibility: .all)
+        ZStack {
+            VStack {
+                if localFileURL != nil {
+                    AsyncImage(url: URL(string: beautifulThing.imageURL)) { image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 400, height: 400)
+                            .onDrag {
+                                let itemProvider = NSItemProvider(contentsOf: self.localFileURL) ?? NSItemProvider()
+                                let userActivity = NSUserActivity(activityType: "com.apple.cocoa.touch.3dmodel")
+                                userActivity.isEligibleForHandoff = true
+                                userActivity.isEligibleForSearch = true
+                                userActivity.isEligibleForPublicIndexing = true
+                                userActivity.title = beautifulThing.title
+                                itemProvider.registerObject(userActivity, visibility: .all)
                                 return itemProvider
-                               }
-                               .highPriorityGesture(DragGesture().onEnded { value in
+                            }
+                        /// minimumDistance not doing anything?
+                            .highPriorityGesture(DragGesture(minimumDistance: 1).onEnded { value in
+                                self.isPreviewVisible = true
+                            })
+
                         
-                                       self.isPreviewVisible = true
-                                   
-                               })
-                           
                     } placeholder: {
                         ProgressView()
                     }
@@ -117,8 +117,6 @@ struct CardView: View {
                             }
                         }
                         .buttonStyle(.plain)
-                       
-                        
                     }
                 }
                 
@@ -129,18 +127,31 @@ struct CardView: View {
             //            .opacity(0.01)
             //            .glassBackgroundEffect()
             .frame(width: 400, height: 400)
+            
+            /// Empty button to highlight card.
+            //            Button {
+            //                print("")
+            //            } label: {
+            //                Text("")
+            //                    .frame(width: 400, height: 400)
+            //            }
+            //            .buttonBorderShape(.roundedRectangle(radius: 60))
+            //            .buttonStyle(.plain)
+            //            .frame(width: 400, height: 400)
+            
+            
         }
-           .sheet(isPresented: $showSheet) {
-                       DescriptionView(showSheet: $showSheet, beautifulThing: beautifulThing)
+        .sheet(isPresented: $showSheet) {
+            DescriptionView(showSheet: $showSheet, beautifulThing: beautifulThing)
         }
         
         .onAppear {
             downloadUSDZFile()
         }
     }
-
+    
     private func downloadUSDZFile() {
-         guard let remoteURL = URL(string: beautifulThing.filename) else { return }
+        guard let remoteURL = URL(string: beautifulThing.filename) else { return }
         
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -172,7 +183,7 @@ struct CardView: View {
             print("DEBUG: Total directory size: \(totalDirectorySize) MB")
         }
     }
-
+    
     private func calculateTotalDirectorySize() -> Double {
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]

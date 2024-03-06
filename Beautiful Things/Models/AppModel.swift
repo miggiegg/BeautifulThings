@@ -9,6 +9,8 @@ import SwiftUI
 
 @Observable
 class AppModel {
+    var isLoading: Bool = true
+
     var showLaunchScreen = true
     
     var beautifulThings: [BeautifulThing] = []
@@ -43,6 +45,8 @@ class AppModel {
                 }
                 
                 self.loadFavorites()
+                self.isLoading = false
+
             }
         }
     }

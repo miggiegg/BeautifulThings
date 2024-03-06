@@ -54,23 +54,28 @@ struct MenuView: View {
                 }
                 .padding()
                 
-                if let selectedCategory = selectedCategory {
-                    if isLargeGridView {
-                        GridLargeView(selectedCategory: selectedCategory)
-                    } else {
-                        GridView(selectedCategory: selectedCategory)
-                    }
-                }
+//                if let selectedCategory = selectedCategory {
+//                    if isLargeGridView {
+//                        GridLargeView(selectedCategory: selectedCategory)
+//                    } else {
+//                        GridView(selectedCategory: selectedCategory)
+//                    }
+//                }
+            }
+            .onAppear {
+                print("DEBUG: MainView .onAppear")
+                print("DEBUG: BeautifulThings: \(appModel.beautifulThings.count)")
+                print("DEBUG: Categories: \(uniqueCategories.count)")
             }
             .padding(.top, -100)
         }
-        .navigationDestination(for: String.self) { category in
-            if isLargeGridView {
-                GridLargeView(selectedCategory: category)
-            } else {
-                GridView(selectedCategory: category)
-            }
-        }
+//        .navigationDestination(for: String.self) { category in
+//            if isLargeGridView {
+//                GridLargeView(selectedCategory: category)
+//            } else {
+//                GridView(selectedCategory: category)
+//            }
+//        }
     }
     
     private var uniqueCategories: Set<String> {

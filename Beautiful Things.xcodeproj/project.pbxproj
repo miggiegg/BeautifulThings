@@ -34,6 +34,7 @@
 		D4B70AA02B87D7C000419269 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B70A9F2B87D7C000419269 /* SearchView.swift */; };
 		D4B70AA22B88F9DE00419269 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B70AA12B88F9DE00419269 /* LaunchView.swift */; };
 		D4B70AA42B88FF8F00419269 /* TypeTextModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B70AA32B88FF8F00419269 /* TypeTextModifier.swift */; };
+		D4EAB15C2B990D5F00D13518 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EAB15B2B990D5F00D13518 /* DebugView.swift */; };
 		D4ED12F42B891AD600325367 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ED12F32B891AD600325367 /* AboutView.swift */; };
 		D4ED12F62B89362000325367 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ED12F52B89362000325367 /* DescriptionView.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		D4B70A9F2B87D7C000419269 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		D4B70AA12B88F9DE00419269 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		D4B70AA32B88FF8F00419269 /* TypeTextModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeTextModifier.swift; sourceTree = "<group>"; };
+		D4EAB15B2B990D5F00D13518 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		D4ED12F32B891AD600325367 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		D4ED12F52B89362000325367 /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,6 +100,7 @@
 				D4ED12F52B89362000325367 /* DescriptionView.swift */,
 				D4B70A9F2B87D7C000419269 /* SearchView.swift */,
 				D4ED12F32B891AD600325367 /* AboutView.swift */,
+				D4EAB15B2B990D5F00D13518 /* DebugView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D449A5F02B8FEE83006074B8 /* MenuView.swift in Sources */,
+				D4EAB15C2B990D5F00D13518 /* DebugView.swift in Sources */,
 				D4267D9B2B8697BA005D35D9 /* ARQLView.swift in Sources */,
 				D4B70AA22B88F9DE00419269 /* LaunchView.swift in Sources */,
 				D4ED12F42B891AD600325367 /* AboutView.swift in Sources */,
@@ -427,7 +431,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Beautiful Things/Preview Content\"";
-				DEVELOPMENT_TEAM = 3RPDX68V9P;
+				DEVELOPMENT_TEAM = 79K6CBNA77;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -443,7 +447,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				XROS_DEPLOYMENT_TARGET = 1;
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Debug;
 		};
@@ -455,7 +459,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Beautiful Things/Preview Content\"";
-				DEVELOPMENT_TEAM = 3RPDX68V9P;
+				DEVELOPMENT_TEAM = 79K6CBNA77;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -471,7 +475,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				XROS_DEPLOYMENT_TARGET = 1;
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Release;
 		};

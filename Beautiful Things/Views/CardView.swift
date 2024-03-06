@@ -8,8 +8,8 @@ import SwiftUI
 import RealityKit
 
 struct ManipulationState {
-  var transform: AffineTransform3D = .identity
-  var active: Bool = false
+    var transform: AffineTransform3D = .identity
+    var active: Bool = false
 }
 
 struct CardView: View {
@@ -23,7 +23,7 @@ struct CardView: View {
     @State private var selectedModelURL: URL? = nil
     @State private var isPreviewVisible = false
     
-
+    
     var body: some View {
         ZStack {
             
@@ -89,63 +89,74 @@ struct CardView: View {
             .sheet(isPresented: $showSheet) {
                 DescriptionView(showSheet: $showSheet, beautifulThing: beautifulThing)
             }
-            .onAppear {
-                downloadUSDZFile()
-            }
-            VStack {
-                if let localFileURL = self.localFileURL {
-                    Model3D(url: localFileURL) { model in
-                        model
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(maxDepth:200)
-                            .frame(width: 200, height: 200)
-                            .padding(10)
-                        
-                    } placeholder: {
-                        ProgressView()
-                    }
-                    .zIndex(1)
-                }
-            }
+            //            .onAppear {
+            //                downloadUSDZFile()
+            //            }
+//            VStack {
+//                if let localFileURL = self.localFileURL {
+//                    Model3D(url: localFileURL) { model in
+//                        model
+//                            .resizable()
+//                            .aspectRatio(contentMode: .fit)
+//                            .frame(maxDepth:200)
+//                            .frame(width: 200, height: 200)
+//                            .padding(10)
+//                    } placeholder: {
+//                        ProgressView()
+//                    }
+//                    .zIndex(1)
+//                } else {
+//                    ProgressView()
+//                        .onAppear {
+//                            downloadUSDZFile()
+//                        }
+//                }
+//            }
         }
-                    .onDrag {
-                                                               let name = self.localFileURL?.deletingPathExtension().lastPathComponent.replacingOccurrences(of: "_", with: " ") ?? "Untitled"
-                                                               let itemProvider: NSItemProvider
-                                                               
-                                                               if let localFileURL = self.localFileURL, localFileURL.pathExtension == "usdz" {
-                                                                   let item = NSItemProvider(contentsOf: localFileURL)
-                                                                   item?.preferredPresentationSize = CGSize(width: 400, height: 400)
-                                                                   item?.suggestedName = name
-                                                                   itemProvider = item ?? NSItemProvider()
-                                                               } else {
-                                                                   itemProvider = NSItemProvider(contentsOf: self.localFileURL) ?? NSItemProvider()
-                                                               }
-                                                               
-                                                               let userActivity = NSUserActivity(activityType: "com.apple.cocoa.touch.3dmodel")
-                                                               userActivity.isEligibleForHandoff = true
-                                                               userActivity.isEligibleForSearch = true
-                                                               userActivity.isEligibleForPublicIndexing = true
-                                                               userActivity.title = name
-                                                               
-                                                               itemProvider.registerObject(userActivity, visibility: .all)
-                                                               return itemProvider
-                    }
-                                                   .highPriorityGesture(DragGesture().onEnded { value in
-                                            
-                                                           self.isPreviewVisible = true
-                                                       
-                                                   })
-                
-                
-            
-            .onAppear {
-                downloadUSDZFile()
-            }
+//        .onAppear {
+//            // Trigger the download if it hasn't started yet
+//            if localFileURL == nil {
+//                downloadUSDZFile()
+//            }
+//        }
+//        .onDrag {
+//            let name = self.localFileURL?.deletingPathExtension().lastPathComponent.replacingOccurrences(of: "_", with: " ") ?? "Untitled"
+//            let itemProvider: NSItemProvider
+//            
+//            if let localFileURL = self.localFileURL, localFileURL.pathExtension == "usdz" {
+//                let item = NSItemProvider(contentsOf: localFileURL)
+//                item?.preferredPresentationSize = CGSize(width: 400, height: 400)
+//                item?.suggestedName = name
+//                itemProvider = item ?? NSItemProvider()
+//            } else {
+//                itemProvider = NSItemProvider(contentsOf: self.localFileURL) ?? NSItemProvider()
+//            }
+//            
+//            let userActivity = NSUserActivity(activityType: "com.apple.cocoa.touch.3dmodel")
+//            userActivity.isEligibleForHandoff = true
+//            userActivity.isEligibleForSearch = true
+//            userActivity.isEligibleForPublicIndexing = true
+//            userActivity.title = name
+//            
+//            itemProvider.registerObject(userActivity, visibility: .all)
+//            return itemProvider
+//        }
+//        .highPriorityGesture(DragGesture().onEnded { value in
+//            
+//            self.isPreviewVisible = true
+//            
+//        })
+        //
+        //
+        //
+        //        .onAppear {
+        //            downloadUSDZFile()
+        //        }
         
     }
+    
     private func downloadUSDZFile() {
-         guard let remoteURL = URL(string: beautifulThing.filename) else { return }
+        guard let remoteURL = URL(string: beautifulThing.filename) else { return }
         
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -177,7 +188,7 @@ struct CardView: View {
             print("DEBUG: Total directory size: \(totalDirectorySize) MB")
         }
     }
-
+    
     private func calculateTotalDirectorySize() -> Double {
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]

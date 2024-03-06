@@ -16,15 +16,17 @@ struct Beautiful_ThingsApp: App {
         WindowGroup {
             if !showMainView {
                 LaunchView(showMainView: $showMainView)
+                    .environment(appModel)
                     .transition(.opacity)
             }
 
             if showMainView {
                 MainView()
+                    .environment(appModel)
                     .transition(.opacity)
             }
         }
-        .environment(appModel) // Provide the appModel to all views within the group
+//        .environment(appModel) // Provide the appModel to all views within the group
         .windowStyle(.plain)
         .defaultSize(width: 1300, height: 950)
     }

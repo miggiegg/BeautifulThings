@@ -51,33 +51,42 @@ struct LaunchView: View {
             }
         }
         .onAppear {
-                    appModel.fetchAllItems(url: "https://beautifulthings.xyz/category/random-access-memories")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        withAnimation {
-                            animationState = .initial
-                        }
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        withAnimation {
-                            animationState = .showFinalText
-                        }
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                        withAnimation {
-                            animationState = .fadeOutFinalText
-                        }
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
-                        withAnimation(.easeInOut(duration: 2.0)) { // Increase the duration here
-                            animationState = .completed
-                            appModel.showLaunchScreen = false
-                            showMainView = true // This line triggers the transition to MainView
-                        }
-                    }
+            print("DEBUG: LaunchView .onAppear count \(appModel.beautifulThings.count)")
+        }
+        .onDisappear {
+            print("DEBUG: LaunchView .onDisappear count \(appModel.beautifulThings.count)")
+        }
+        .onAppear {
+
+            
+                                appModel.fetchAllItems(url: "https://beautifulthings.xyz/category/random-access-memories")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                withAnimation {
+                    animationState = .initial
                 }
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                withAnimation {
+                    animationState = .showFinalText
+                }
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                withAnimation {
+                    animationState = .fadeOutFinalText
+                }
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+                withAnimation(.easeInOut(duration: 2.0)) { // Increase the duration here
+                    animationState = .completed
+                    appModel.showLaunchScreen = false
+                }
+            }
+            showMainView = true // This line triggers the transition to MainView
+
+        }
     }
 }
 

@@ -79,15 +79,15 @@ class BeautifulThingFetcher {
                 }
                 
                 /// Helpful Debug Stats
-                /// Seems to be fetching 4x for each item but size is minimal so shouldn't cause issue?
-                print("DEBUG: Fetched \(beautifulThings.count) beautiful things.")
-                let dataSize = Double(data.count) / 1024.0 / 1024.0
-                print("DEBUG: Fetched data size \(dataSize) MB")
-                
                 beautifulThings.enumerated().forEach { index, beautifulThing in
                     print("DEBUG: Fetched \(beautifulThing.title) [\(index)]")
                 }
                 
+                print("DEBUG: -----------------")
+                
+                print("DEBUG: Fetched \(beautifulThings.count) beautiful things.")
+                let dataSize = Double(data.count) / 1024.0 / 1024.0
+                print("DEBUG: Fetched data size \(dataSize) MB")
                 
             } catch {
                 print("Error parsing HTML: \(error.localizedDescription)")
